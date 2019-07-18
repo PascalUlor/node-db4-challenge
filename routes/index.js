@@ -5,4 +5,6 @@ const router = express.Router();
 
 router.get("/", Controller.getAllRecipes);
 
+router.get("/:id", Controller.getShoppingCart);
+
 module.exports = router;
