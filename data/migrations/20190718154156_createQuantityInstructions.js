@@ -7,13 +7,17 @@ exports.up = function(knex) {
         .unsigned()
         .notNullable()
         .references("id")
-        .inTable("recipes");
+        .inTable("recipes")
+        .onUpdate("CASCADE")
+        .onDelete("CASCADE");
       table
         .integer("ingredient_id")
         .unsigned()
         .notNullable()
         .references("id")
-        .inTable("ingredients");
+        .inTable("ingredients")
+        .onUpdate("CASCADE")
+        .onDelete("CASCADE");
       table
         .integer("quantity")
         .notNullable()
@@ -26,13 +30,25 @@ exports.up = function(knex) {
         .unsigned()
         .notNullable()
         .references("id")
-        .inTable("recipes");
+        .inTable("recipes")
+        .onUpdate("CASCADE")
+        .onDelete("CASCADE");
+      table
+        .integer("ingredient_id")
+        .unsigned()
+        .notNullable()
+        .references("id")
+        .inTable("ingredients")
+        .onUpdate("CASCADE")
+        .onDelete("CASCADE");
       table
         .integer("quantity_id")
         .unsigned()
         .notNullable()
         .references("id")
-        .inTable("quantity");
+        .inTable("quantity")
+        .onUpdate("CASCADE")
+        .onDelete("CASCADE");
       table.text("steps", 128).notNullable();
     });
 };

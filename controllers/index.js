@@ -34,7 +34,27 @@ const getShoppingCart = async (req, res) => {
   }
 };
 
+const getRecipeSteps = async (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+  try {
+    const steps = await recipeModel.getInstructions(id);
+    if (id) {
+      return res.status(200).json({
+        status: 200,
+        data: steps
+      });
+    }
+  } catch (err) {
+    res.status(500).json({
+      status: 500,
+      error: err
+    });
+  }
+};
+
 module.exports = {
   getAllRecipes,
-  getShoppingCart
+  getShoppingCart,
+  getRecipeSteps
 };

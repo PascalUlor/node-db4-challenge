@@ -17,7 +17,23 @@ const getShoppingList = recipe_id => {
     .where({ "recipes.id": recipe_id });
 };
 
+const getInstructions = recipe_id => {
+  return db
+    .select(
+      "recipes.recipename",
+      "ingredients.ingredientname",
+      "instructions.steps",
+      "quantity.quantity"
+    )
+    .from("recipes")
+    .join("ingredients", "instructions.ingredient_id", "ingredients.id")
+    .join("quantity", "instructions.quantity_id", "quantity.id")
+    .join("instructions", "instructions.recipe_id", "recipes.id")
+    .where({ "recipes.id": recipe_id });
+};
+
 module.exports = {
   getRecipes,
-  getShoppingList
+  getShoppingList,
+  getInstructions
 };
